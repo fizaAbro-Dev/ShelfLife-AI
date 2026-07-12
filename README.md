@@ -1,4 +1,4 @@
-# ShelfLife AI - Backend
+# ShelfLife AI
 
 **ShelfLife AI** is an AI-powered food waste management platform that helps users track food expiry dates, reduce waste, and receive smart recipe suggestions using OCR and AI.
 
