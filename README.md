@@ -1,86 +1,17 @@
 # ShelfLife AI - Backend
 
-Backend API for **ShelfLife AI**, developed for the **DYLP Vibe Coding Hackathon 2026**.
+**ShelfLife AI** is an AI-powered food waste management platform that helps users track food expiry dates, reduce waste, and receive smart recipe suggestions using OCR and AI.
 
-## Tech Stack
+## Backend
 
-- Node.js
-- Express.js
-- MongoDB Atlas
-- Mongoose
-- JWT Authentication
-- bcrypt
-- CORS
-- dotenv
+This backend is built with **Node.js, Express.js, MongoDB Atlas, and JWT Authentication**. It provides secure authentication, inventory management, analytics, and notification APIs for the ShelfLife AI application.
 
----
+### Features
 
-## Features
-
-### Authentication
-
-- User Registration
-- User Login
-- JWT Authentication
-- Protected Routes
-- Current User API
-
-### Inventory
-
-- Add Product
-- Get All Products
-- Get Single Product
-- Update Product
-- Delete Product
-
-### Analytics
-
-- Total Products
-- Fresh Products
-- Expiring Soon Products
-- Expired Products
-- Total Inventory Value
-- Money at Risk
-
-### Notifications
-
-- Generate Expiry Notifications
-- Get Notifications
-- Mark Notification as Read
-- Delete Notification
-
-
-## API Endpoints
-
-### Authentication
-
-| Method | Endpoint |
-|--------|----------|
-| POST | /api/auth/register |
-| POST | /api/auth/login |
-| GET | /api/auth/me |
-
-### Inventory
-
-| Method | Endpoint |
-|--------|----------|
-| POST | /api/inventory |
-| GET | /api/inventory |
-| GET | /api/inventory/:id |
-| PUT | /api/inventory/:id |
-| DELETE | /api/inventory/:id |
-
-### Analytics
-
-| Method | Endpoint |
-|--------|----------|
-| GET | /api/analytics |
-
-### Notifications
-
-| Method | Endpoint |
-|--------|----------|
-| GET | /api/notifications |
-| POST | /api/notifications/check |
-| PUT | /api/notifications/:id/read |
-| DELETE | /api/notifications/:id |
+- JWT Authentication (Register/Login)
+- Inventory CRUD APIs
+- Dashboard Analytics APIs
+- Notification APIs
+- MongoDB Atlas Integration
+- RESTful APIs
+- Postman Tested
