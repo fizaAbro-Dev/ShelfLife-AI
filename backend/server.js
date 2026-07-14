@@ -22,9 +22,13 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/inventory", inventoryRoutes);
+const uploadRoutes = require("./routes/uploadRoutes");
+   app.use("/api/upload", uploadRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/notifications", notificationRoutes);
 
+const ocrRoutes = require("./routes/ocrRoutes");
+   app.use("/api/ocr", ocrRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
