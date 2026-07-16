@@ -9,6 +9,9 @@ const inventoryRoutes = require("./routes/inventoryRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const recipeRoutes = require("./routes/recipeRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+const ocrRoutes = require("./routes/ocrRoutes");
+
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 
@@ -24,9 +27,12 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/inventory", inventoryRoutes);
+   app.use("/api/upload", uploadRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/ocr", ocrRoutes);
 app.use("/api/recipes", recipeRoutes);
+
 
 // Test Route
 app.get("/", (req, res) => {
