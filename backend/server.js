@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config();
 const cors = require("cors");
 const connectDB = require("./config/db");
 const dns = require("dns");
@@ -7,10 +8,14 @@ const authRoutes = require("./routes/authRoutes");
 const inventoryRoutes = require("./routes/inventoryRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
+const recipeRoutes = require("./routes/recipeRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+const ocrRoutes = require("./routes/ocrRoutes");
+
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
-// Load Environment Variables
-dotenv.config();
+
+
 
 // Connect Database
 connectDB();
@@ -22,13 +27,12 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/inventory", inventoryRoutes);
-const uploadRoutes = require("./routes/uploadRoutes");
    app.use("/api/upload", uploadRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/ocr", ocrRoutes);
+app.use("/api/recipes", recipeRoutes);
 
-const ocrRoutes = require("./routes/ocrRoutes");
-   app.use("/api/ocr", ocrRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
@@ -37,7 +41,7 @@ app.get("/", (req, res) => {
     message: "ShelfLife AI Backend is Running",
   });
 });
-
+console.log("Gemini Key:", process.env.GEMINI_API_KEY);
 // Server
 const PORT = process.env.PORT || 5000;
 
