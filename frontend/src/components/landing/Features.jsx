@@ -31,9 +31,9 @@ const features = [
 function Features() {
   return (
     <section
-      id="features"
-      className="rounded-t-[48px] bg-gradient-to-br from-[#0B6B3A] via-[#187C42] to-[#79B83F] px-6 py-16 md:px-16"
-    >
+  id="features"
+  className="scroll-mt-24 rounded-t-[48px] bg-gradient-to-br from-[#0B6B3A] via-[#187C42] to-[#79B83F] px-6 py-16 md:px-16"
+>
       <div className="mx-auto max-w-7xl">
         <div className="mb-10">
           <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-green-100">

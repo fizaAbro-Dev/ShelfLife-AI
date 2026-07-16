@@ -9,6 +9,8 @@ import Inventory from "./pages/Inventory/Inventory";
 import ScanReceipt from "./pages/ScanReceipt/ScanReceipt";
 import Recipes from "./pages/Recipes/Recipes";
 import Notifications from "./pages/Notifications/Notifications";
+import Analytics from "./pages/Analytics/Analytics";
+import Profile from "./pages/Profile/Profile";
 
 import DashboardLayout from "./components/layout/DashboardLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -16,10 +18,12 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 function App() {
   return (
     <Routes>
+      {/* Public Pages */}
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
+      {/* Protected Pages with Sidebar and Topbar */}
       <Route
         element={
           <ProtectedRoute>
@@ -32,6 +36,8 @@ function App() {
         <Route path="/scan" element={<ScanReceipt />} />
         <Route path="/recipes" element={<Recipes />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
