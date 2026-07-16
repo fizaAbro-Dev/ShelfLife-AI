@@ -11,13 +11,7 @@ function Topbar() {
   const [username, setUsername] = useState(DEFAULT_USERNAME);
   const [profileImage, setProfileImage] = useState("");
 
-  const hideSearchPages = [
-    "/profile",
-    "/notifications",
-    "/analytics",
-    "/recipes",
-  ];
-  const hideSearchPages = [
+    const hideSearchPages = [
   "/profile",
   "/notifications",
   "/analytics",

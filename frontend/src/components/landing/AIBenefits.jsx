@@ -30,7 +30,11 @@ const benefits = [
 
 function AIBenefits() {
   return (
-    <section className="py-24 bg-[#F8FAF9]">
+   <section
+  id="about"
+  className="scroll-mt-24 bg-[#F8FAF9] py-24"
+>
+
 
       <div className="max-w-7xl mx-auto px-6">
 

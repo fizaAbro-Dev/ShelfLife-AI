@@ -22,32 +22,44 @@ function Login() {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const savedUser = JSON.parse(
-      localStorage.getItem("shelflife_user") || "null"
-    );
+  const savedUser = JSON.parse(
+    localStorage.getItem("shelflife_user") || "null"
+  );
 
-    if (!savedUser) {
-      alert("Account not found. Please create an account first.");
-      navigate("/register");
-      return;
-    }
-
-    if (
-      savedUser.email !== formData.email ||
-      savedUser.password !== formData.password
-    ) {
-      alert("Email ya password ghalat hai.");
-      return;
-    }
-
-    localStorage.setItem("shelflife_token", "temporary_frontend_token");
-
-    navigate("/dashboard");
+  if (!savedUser) {
+    alert("Account not found. Please create an account first.");
+    navigate("/register");
+    return;
   }
 
-  return (
+  const enteredEmail = formData.email.trim().toLowerCase();
+  const registeredEmail = savedUser.email.trim().toLowerCase();
+
+  if (
+    registeredEmail !== enteredEmail ||
+    savedUser.password !== formData.password
+  ) {
+    alert("Email ya password ghalat hai.");
+    return;
+  }
+
+  localStorage.setItem("shelflife_token", "temporary_frontend_token");
+
+  // Registered account ka exact name use hoga
+  localStorage.setItem("shelflife_user_name", savedUser.name.trim());
+
+  // Dusre user ki purani picture show nahi hogi
+  localStorage.removeItem("shelflife_profile_image");
+
+  window.dispatchEvent(new Event("shelflife-profile-updated"));
+
+  navigate("/dashboard");
+}
+     
+     
+     return (
     <div className="flex min-h-screen items-center justify-center bg-[#F3F8F5] px-5 py-10">
       <div className="grid w-full max-w-5xl overflow-hidden rounded-[32px] bg-white shadow-2xl lg:grid-cols-2">
         <div className="hidden bg-gradient-to-br from-[#075C36] to-[#79B83E] p-12 text-white lg:flex lg:flex-col lg:justify-between">

@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Play, ScanLine, Sparkles, ChefHat, X } from "lucide-react";
+import { Play, X } from "lucide-react";
 
 import heroImage from "../../assets/images/empty-inventory.png.png";
+import demoVideo from "../../assets/Video/Demo.mp4";
 
 function Hero() {
   const navigate = useNavigate();
+  const videoRef = useRef(null);
+
   const [showDemo, setShowDemo] = useState(false);
 
   function handleGetStarted() {
@@ -18,13 +21,25 @@ function Hero() {
     }
   }
 
+  function openDemo() {
+    setShowDemo(true);
+  }
+
   function closeDemo() {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+
     setShowDemo(false);
   }
 
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#F8FAF9] via-white to-[#F1FBEA] px-6 py-14 md:px-12 lg:px-16">
+      <section
+        id="home"
+        className="relative scroll-mt-24 overflow-hidden bg-gradient-to-br from-[#F8FAF9] via-white to-[#F1FBEA] px-6 py-14 md:px-12 lg:px-16"
+      >
         <div className="pointer-events-none absolute -left-36 top-28 h-80 w-80 rounded-full bg-green-100/70 blur-3xl" />
 
         <div className="pointer-events-none absolute -right-40 bottom-0 h-[420px] w-[420px] rounded-full bg-lime-100/70 blur-3xl" />
@@ -67,7 +82,7 @@ function Hero() {
 
               <button
                 type="button"
-                onClick={() => setShowDemo(true)}
+                onClick={openDemo}
                 className="flex items-center gap-2 rounded-2xl border border-[#138A45] bg-white px-8 py-4 font-semibold text-[#138A45] transition duration-300 hover:-translate-y-1 hover:bg-green-50"
               >
                 <Play size={19} fill="currentColor" />
@@ -100,11 +115,11 @@ function Hero() {
 
       {showDemo && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 px-4 py-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4 py-8"
           onClick={closeDemo}
         >
           <div
-            className="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-[32px] bg-white p-6 shadow-2xl sm:p-9"
+            className="max-h-[92vh] w-full max-w-5xl overflow-y-auto rounded-[30px] bg-white p-5 shadow-2xl sm:p-7"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-5">
@@ -117,102 +132,40 @@ function Hero() {
                   How ShelfLife AI Works
                 </h2>
 
-                <p className="mt-3 text-gray-500">
-                  See how groceries move from a receipt into a smart personal
-                  inventory.
+                <p className="mt-2 text-gray-500">
+                  Watch a complete walkthrough of the ShelfLife AI frontend.
                 </p>
               </div>
 
               <button
                 type="button"
                 onClick={closeDemo}
-                className="rounded-xl bg-gray-100 p-2 text-gray-600 transition hover:bg-gray-200"
+                className="shrink-0 rounded-xl bg-gray-100 p-2 text-gray-600 transition hover:bg-gray-200"
                 aria-label="Close demo"
               >
                 <X size={22} />
               </button>
             </div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-3xl bg-green-50 p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-700 text-white">
-                  <ScanLine size={24} />
-                </div>
+            <div className="mt-6 overflow-hidden rounded-2xl bg-black">
+              <video
+                ref={videoRef}
+                controls
+                autoPlay
+                preload="metadata"
+                className="max-h-[65vh] w-full bg-black object-contain"
+              >
+                <source src={demoVideo} type="video/mp4" />
 
-                <p className="mt-5 text-sm font-bold text-green-700">
-                  STEP 01
-                </p>
-
-                <h3 className="mt-2 text-xl font-bold text-gray-900">
-                  Upload Receipt
-                </h3>
-
-                <p className="mt-2 leading-6 text-gray-600">
-                  Upload a grocery receipt or manually enter a food product.
-                </p>
-              </div>
-
-              <div className="rounded-3xl bg-green-50 p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-700 text-white">
-                  <Sparkles size={24} />
-                </div>
-
-                <p className="mt-5 text-sm font-bold text-green-700">
-                  STEP 02
-                </p>
-
-                <h3 className="mt-2 text-xl font-bold text-gray-900">
-                  AI Detects Products
-                </h3>
-
-                <p className="mt-2 leading-6 text-gray-600">
-                  OCR and AI extract product information for user review.
-                </p>
-              </div>
-
-              <div className="rounded-3xl bg-green-50 p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-700 text-white">
-                  <ScanLine size={24} />
-                </div>
-
-                <p className="mt-5 text-sm font-bold text-green-700">
-                  STEP 03
-                </p>
-
-                <h3 className="mt-2 text-xl font-bold text-gray-900">
-                  Track Inventory
-                </h3>
-
-                <p className="mt-2 leading-6 text-gray-600">
-                  Saved products become part of the user's personal inventory.
-                </p>
-              </div>
-
-              <div className="rounded-3xl bg-green-50 p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-700 text-white">
-                  <ChefHat size={24} />
-                </div>
-
-                <p className="mt-5 text-sm font-bold text-green-700">
-                  STEP 04
-                </p>
-
-                <h3 className="mt-2 text-xl font-bold text-gray-900">
-                  Get Smart Suggestions
-                </h3>
-
-                <p className="mt-2 leading-6 text-gray-600">
-                  Receive expiry alerts and recipe ideas after inventory data is
-                  available.
-                </p>
-              </div>
+                Your browser does not support the video tag.
+              </video>
             </div>
 
-            <div className="mt-8 flex flex-wrap justify-end gap-3">
+            <div className="mt-6 flex flex-wrap justify-end gap-3">
               <button
                 type="button"
                 onClick={closeDemo}
-                className="rounded-xl border border-gray-300 px-6 py-3 font-semibold text-gray-700"
+                className="rounded-xl border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition hover:bg-gray-50"
               >
                 Close
               </button>

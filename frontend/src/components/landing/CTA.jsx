@@ -12,18 +12,6 @@ function CTA() {
           the planet with ShelfLife AI.
         </p>
 
-        <div className="mt-10 flex justify-center gap-5 flex-wrap">
-
-          <button className="rounded-xl bg-white px-8 py-4 font-bold text-[#0F6B3E] hover:scale-105 duration-300">
-            Get Started
-          </button>
-
-          <button className="rounded-xl border border-white px-8 py-4 font-bold hover:bg-white hover:text-[#0F6B3E] duration-300">
-            Watch Demo
-          </button>
-
-        </div>
-
       </div>
     </section>
   );

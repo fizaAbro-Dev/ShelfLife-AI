@@ -30,28 +30,43 @@ function Register() {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords match nahi kar rahe.");
-      return;
-    }
+  const cleanName = formData.name.trim();
+  const cleanEmail = formData.email.trim().toLowerCase();
 
-    const userData = {
-      name: formData.name.trim(),
-      email: formData.email.trim(),
-      password: formData.password,
-    };
-
-    localStorage.setItem("shelflife_user", JSON.stringify(userData));
-    localStorage.setItem("shelflife_token", "temporary_frontend_token");
-
-    navigate("/dashboard");
+  if (!cleanName) {
+    alert("Please enter your full name.");
+    return;
   }
 
+  if (formData.password !== formData.confirmPassword) {
+    alert("The passwords you entered do not match. Please try again.");
+    return;
+  }
+
+  const userData = {
+    name: cleanName,
+    email: cleanEmail,
+    password: formData.password,
+  };
+
+  localStorage.setItem("shelflife_user", JSON.stringify(userData));
+  localStorage.setItem("shelflife_token", "temporary_frontend_token");
+
+  // Dashboard par registered user ka exact name show hoga
+  localStorage.setItem("shelflife_user_name", cleanName);
+
+  // Pichle user ki picture remove hogi
+  localStorage.removeItem("shelflife_profile_image");
+
+  window.dispatchEvent(new Event("shelflife-profile-updated"));
+
+  navigate("/dashboard");
+}
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#F3F8F5] px-5 py-10">
-      <div className="grid w-full max-w-5xl overflow-hidden rounded-[32px] bg-white shadow-2xl lg:grid-cols-2">
+      <div className="relative grid w-full max-w-5xl overflow-hidden rounded-[32px] bg-white shadow-2xl lg:grid-cols-2">
         <div className="hidden bg-gradient-to-br from-[#075C36] to-[#79B83E] p-12 text-white lg:flex lg:flex-col lg:justify-between">
           <div>
             <div className="flex items-center gap-3">
