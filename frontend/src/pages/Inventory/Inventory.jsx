@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PackageOpen, Plus, Upload, X } from "lucide-react";
+import { Plus, Upload, X } from "lucide-react";
+
+import emptyInventory from "../../assets/images/inven-emp.png";
 
 function Inventory() {
   const navigate = useNavigate();
@@ -44,16 +46,20 @@ function Inventory() {
         </div>
       </header>
 
-      <section className="mt-8 rounded-3xl bg-white px-6 py-16 text-center shadow-sm">
-        <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-green-100 text-green-700">
-          <PackageOpen size={46} />
+      <section className="mt-8 rounded-[32px] border border-gray-100 bg-white px-6 py-14 text-center shadow-sm">
+        <div className="flex justify-center">
+          <img
+            src={emptyInventory}
+            alt="Empty inventory illustration"
+            className="w-full max-w-[330px] object-contain md:max-w-[390px]"
+          />
         </div>
 
-        <h2 className="mt-6 text-3xl font-bold text-gray-900">
+        <h2 className="mt-5 text-3xl font-bold text-gray-900">
           Your Inventory Is Empty
         </h2>
 
-        <p className="mx-auto mt-3 max-w-lg text-gray-500">
+        <p className="mx-auto mt-3 max-w-lg leading-7 text-gray-500">
           Upload a grocery receipt or manually add your first product. Products
           will appear here after they are saved.
         </p>

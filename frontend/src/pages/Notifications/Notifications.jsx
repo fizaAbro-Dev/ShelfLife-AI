@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import {
   Bell,
   CheckCheck,
-  CircleAlert,
+  AlertCircle,
   PackageCheck,
   ScanLine,
 } from "lucide-react";
@@ -25,7 +25,8 @@ function Notifications() {
     }
 
     return notifications.filter(
-      (item) => item.type.toLowerCase() === selectedFilter.toLowerCase()
+      (item) =>
+        item.type?.toLowerCase() === selectedFilter.toLowerCase()
     );
   }, [notifications, selectedFilter]);
 
@@ -54,7 +55,7 @@ function Notifications() {
   function getNotificationStyle(type) {
     if (type === "expiry") {
       return {
-        icon: CircleAlert,
+        icon: AlertCircle,
         iconClass: "bg-amber-100 text-amber-700",
       };
     }
