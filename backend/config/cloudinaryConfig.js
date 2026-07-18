@@ -11,7 +11,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "shelflife-receipts",
-    allowed_formats: ["jpg", "png", "jpeg"],
+   allowed_formats: ["jpg", "jpeg", "png", "jfif"],
   },
 });
 

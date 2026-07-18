@@ -14,12 +14,12 @@ const getRecipeImage = async (recipeName) => {
     }
 
     // Fallback image
-    return "https://via.placeholder.com/600x400?text=Recipe+Image";
+    return "https://placehold.co/600x400?text=Recipe";
 
   } catch (error) {
     console.log("MealDB Error:", error.message);
 
-    return "https://via.placeholder.com/600x400?text=Recipe+Image";
+ return "https://placehold.co/600x400?text=Recipe";
   }
 };
 

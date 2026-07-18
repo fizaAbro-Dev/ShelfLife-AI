@@ -7,7 +7,7 @@ const axios = require("axios");
 const scanReceipt = async (req, res) => {
   try {
     if (!req.file) {
-      return res.status(400).json({ success: false, message: "Koi image nahi mili" });
+      return res.status(400).json({ success: false, message: "no image" });
     }
 
     const imageUrl = req.file.path; // Cloudinary ne diya hua URL

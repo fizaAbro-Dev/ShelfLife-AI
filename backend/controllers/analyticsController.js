@@ -36,15 +36,16 @@ const getAnalytics = async (req, res) => {
       }
     });
 
-    res.status(200).json({
-      success: true,
-      analytics: {
-        totalProducts,
-        fresh,
-        expiringSoon,
-        expired,
-        totalValue,
-        moneyAtRisk,
+   res.status(200).json({
+  success: true,
+  analytics: {
+    totalProducts,
+    fresh,
+    expiringSoon,
+    expired,
+    totalValue: Number(totalValue.toFixed(2)),
+    moneyAtRisk: Number(moneyAtRisk.toFixed(2)),
+  
       },
     });
 

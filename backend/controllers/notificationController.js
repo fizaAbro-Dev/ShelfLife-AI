@@ -3,6 +3,32 @@ const { checkExpiringProducts } = require("../services/notificationService");
 // ==========================
 // Get All Notifications
 // ==========================
+
+const checkNotifications = async (req, res) => {
+  try {
+
+    console.log("🔥 CHECK ROUTE HIT");
+
+    await checkExpiringProducts();
+
+    console.log("🔥 CHECK SERVICE COMPLETED");
+
+    res.status(200).json({
+      success: true,
+      message: "Notifications checked successfully."
+    });
+
+  } catch (error) {
+
+    console.log("Notification Error:", error);
+
+    res.status(500).json({
+      success:false,
+      message:error.message
+    });
+
+  }
+};
 const getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find({
@@ -91,16 +117,21 @@ const deleteNotification = async (req, res) => {
   }
 };
 
-// ==========================
-// Check Expiring Products
-// ==========================
-const checkNotifications = async (req, res) => {
+const markAllAsRead = async (req, res) => {
   try {
-    await checkExpiringProducts();
+    await Notification.updateMany(
+      {
+        user: req.user._id,
+        isRead: false,
+      },
+      {
+        isRead: true,
+      }
+    );
 
     res.status(200).json({
       success: true,
-      message: "Notifications checked successfully.",
+      message: "All notifications marked as read",
     });
 
   } catch (error) {
@@ -110,10 +141,10 @@ const checkNotifications = async (req, res) => {
     });
   }
 };
-
 module.exports = {
   getNotifications,
   markAsRead,
   deleteNotification,
     checkNotifications,
+  markAllAsRead,
 };

@@ -10,9 +10,15 @@ const {
 } = require("../controllers/inventoryController");
 
 const { protect } = require("../middleware/authMiddleware");
+const upload = require("../middleware/upload");
 
 // Add Product
-router.post("/", protect, addProduct);
+router.post(
+  "/",
+  protect,
+  upload.single("image"),
+  addProduct
+);
 
 // Get All Products
 router.get("/", protect, getProducts);
@@ -21,7 +27,12 @@ router.get("/", protect, getProducts);
 router.get("/:id", protect, getProductById);
 
 // Update Product
-router.put("/:id", protect, updateProduct);
+router.put(
+  "/:id",
+  protect,
+  upload.single("image"),
+  updateProduct
+);
 
 // Delete Product
 router.delete("/:id", protect, deleteProduct);
